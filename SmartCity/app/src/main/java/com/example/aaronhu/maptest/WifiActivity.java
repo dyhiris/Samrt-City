@@ -56,7 +56,7 @@ public class WifiActivity extends Activity implements View.OnClickListener {
         // set button listener (this class)
         buttonPin11.setOnClickListener(this);
         buttonPin12.setOnClickListener(this);
-        buttonPin13.setOnClickListener(this);
+      
 
         // get the IP address and port number from the last time the user used
         // the app,
