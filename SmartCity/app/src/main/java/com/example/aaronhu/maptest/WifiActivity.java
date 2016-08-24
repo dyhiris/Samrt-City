@@ -28,7 +28,7 @@ public class WifiActivity extends Activity implements View.OnClickListener {
     public final static String PREF_IP = "PREF_IP_ADDRESS";
     public final static String PREF_PORT = "PREF_PORT_NUMBER";
     // declare buttons and text inputs
-    private Button buttonPin11, buttonPin12, buttonPin13;
+    private Button buttonPin11, buttonPin12;
     private EditText editTextIPAddress, editTextPortNumber;
     // shared preferences objects used to save the IP address and port so that
     // the user doesn't have to
@@ -47,7 +47,7 @@ public class WifiActivity extends Activity implements View.OnClickListener {
         // assign buttons
         buttonPin11 = (Button) findViewById(R.id.buttonPin11);
         buttonPin12 = (Button) findViewById(R.id.buttonPin12);
-        buttonPin13 = (Button) findViewById(R.id.buttonPin13);
+        
 
         // assign text inputs
         editTextIPAddress = (EditText) findViewById(R.id.editTextIPAddress);
@@ -70,7 +70,7 @@ public class WifiActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
 
         // get the pin number
-        int pinNumber = 0;
+      
         String state = "";
         // get the ip address
         String ipAddress = editTextIPAddress.getText().toString().trim();
@@ -85,13 +85,9 @@ public class WifiActivity extends Activity implements View.OnClickListener {
 
         // get the pin number from the button that was clicked
         if (view.getId() == buttonPin11.getId()) {
-            state = "lock_open";
+            state = "open";
         } else if (view.getId() == buttonPin12.getId()) {
-            state = "lock_close";
-
-
-        } else {
-            pinNumber = 13;
+            state = "close";
         }
         Toast.makeText(WifiActivity.this, state, Toast.LENGTH_SHORT).show();
         // execute HTTP request
@@ -113,16 +109,16 @@ public class WifiActivity extends Activity implements View.OnClickListener {
      * @return The Arduino's reply text, or an ERROR message is it fails to
      *         receive one
      */
-    public String sendRequest(String pinNumber, String ipAddress, String portNumber) {
+    public String sendRequest(String state, String ipAddress, String portNumber) {
         String arduinoResponse = "ERROR";
 
         try {
 
             HttpClient httpclient = new DefaultHttpClient(); // create an HTTP
             // client
-            // define the URL e.g. http://myIpaddress:myport/?pin=13 (to toggle
+            // define the URL e.g. http://myIpaddress:myport/?state=open (to toggle
             // pin 13 for example)
-            URI website = new URI("http://" + ipAddress + ":" + portNumber + "/?" + pinNumber);
+            URI website = new URI("http://" + ipAddress + ":" + portNumber + "/?state=" + state);
             HttpGet getRequest = new HttpGet(); // create an HTTP GET object
             getRequest.setURI(website); // set the URL of the GET request
             HttpResponse response = httpclient.execute(getRequest); // execute
@@ -162,7 +158,6 @@ public class WifiActivity extends Activity implements View.OnClickListener {
         private String requestReply, ipAddress, portNumber,state;
         private Context context;
         private AlertDialog alertDialog;
-        private int pinNumber;
 
         /**
          * Description: The asyncTask class constructor. Assigns the values used
