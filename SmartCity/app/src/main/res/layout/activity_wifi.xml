@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Get Location"
+        android:text="Lock Control"
         android:id="@+id/textView4"
         android:layout_gravity="center_horizontal"
         android:textColor="#ffffff"
@@ -38,32 +38,23 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pin 11"
+            android:text="open"
             android:id="@+id/buttonPin11"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.33"
+            android:layout_weight="0.92"
             android:background="#40c5bc"
             android:textColor="#ffffff" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pin 12"
+            android:text="close"
             android:id="@+id/buttonPin12"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.33"
+            android:layout_weight="0.12"
             android:background="#b92800"
             android:textColor="#ffffff" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pin 13"
-            android:id="@+id/buttonPin13"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.34"
-            android:background="#7a07b8"
-            android:textColor="#ffffff" />
 
 
     </LinearLayout>
